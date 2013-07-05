@@ -77,11 +77,24 @@ $(document).ready(function() {
 		});
 	});
 
+    socket.on('users', function(users) {
+        $('#user-list').empty();
+
+        for(var i = 0; i < users.length; i++) {
+            if(users[i] != '') {
+                $('#user-list').append(divEscapedContentElement(users[i]));
+            }
+        }
+    });
+
 	// Request list of rooms available intermittently.
 	setInterval(function() {
 		socket.emit('rooms');
 	}, 1000);
 
+    setInterval(function() {
+        socket.emit('users');
+    }, 1000);
 
 	$('#send-message').focus();
 

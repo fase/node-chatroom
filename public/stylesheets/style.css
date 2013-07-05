@@ -28,6 +28,15 @@ a {
 	margin-right: 10px;
 }
 
+#user-list {
+    float: left;
+    width: 100px;
+    height: 300px;
+    overflow: auto;
+    border: solid 1px red;
+    clear: left;
+}
+
 #room-list {
 	float: right;
 	width: 100px;
@@ -40,6 +49,7 @@ a {
 }
 
 #room-list div:hover {
+    cursor: pointer;
 	background-color: #ddd;
 }
 
