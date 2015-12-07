@@ -1,11 +1,13 @@
-USE node
+FROM node
 
-RUN apt-get update
-RUN apt-get -y upgrade
+COPY server.js /root/server.js
+COPY package.json /root/package.json
+COPY lib/chat_server.js /root/lib/chat_server.js
+COPY public/ /root/public/
 
-COPY server.js ~/server.js
-COPY package.json ~/package.json
+RUN cd /root \
+  && npm install
 
 EXPOSE 3000
 
-RUN forever start server.js 
+CMD node /root/server.js 

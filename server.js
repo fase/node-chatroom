@@ -7,20 +7,18 @@ var http = require('http'),
 
 // Create http server using anonymous function to define per-request behavior.
 var server = http.createServer(function(request, response) {
-	var filePath = false;
+	var filePath = path.dirname(require.main.filename) + '/public/';
 
 	// Determine html file to be served by default.
 	if(request.url == '/') {
-		filePath = 'public/index.html';
+		filePath += 'index.html';
 	} else {
 		// Translate url path to relative file path.
-		filePath = 'public' + request.url;
+		filePath += request.url;
 	}
 
-	var absPath = './' + filePath;
-
 	// Serve static file.
-	serveStatic(response, cache, absPath);
+	serveStatic(response, cache, filePath);
 });
 
 
